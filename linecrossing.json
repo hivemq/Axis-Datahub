@@ -1,0 +1,50 @@
+{
+  "$schema" : "http://json-schema.org/draft-04/schema#",
+  "type" : "object",
+  "properties" : {
+    "topic" : {
+      "type" : "string"
+    },
+    "timestamp" : {
+      "type" : "integer"
+    },
+    "serial" : {
+      "type" : "string"
+    },
+    "message" : {
+      "type" : "object",
+      "properties" : {
+        "source" : {
+          "type" : "object"
+        },
+        "key" : {
+          "type" : "object"
+        },
+        "data" : {
+          "type" : "object",
+          "properties" : {
+            "scenario" : {
+              "type" : "string"
+            },
+            "reason" : {
+              "type" : "string"
+            },
+            "resetTime" : {
+              "type" : "string"
+            },
+            "totalHuman" : {
+              "type" : "string"
+            },
+            "total" : {
+              "type" : "string"
+            }
+          },
+          "required" : [ "scenario", "reason", "resetTime", "totalHuman", "total" ]
+        }
+      },
+      "required" : [ "source", "key", "data" ]
+    }
+  },
+  "required" : [ "topic", "timestamp", "serial", "message" ]
+}
+

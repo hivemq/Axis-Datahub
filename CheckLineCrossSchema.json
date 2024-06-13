@@ -1,0 +1,68 @@
+{
+  "id": "CheckLineCrossSchema",
+  "matching": {
+    "topicFilter": "axis/B8A44F284388/event/tns:axis/CameraApplicationPlatform/ObjectAnalytics/#"
+  },
+  "validation": {
+    "validators": [
+      {
+        "type": "schema",
+        "arguments": {
+          "strategy": "ALL_OF",
+          "schemas": [
+            {
+              "schemaId": "linecrossing",
+              "version": "latest"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "onSuccess": {
+    "pipeline": [
+      {
+        "id": "operation-8NRnL",
+        "functionId": "System.log",
+        "arguments": {
+          "level": "WARN",
+          "message": "Linecross topic recieved and schema is VAlid, processing JSON and re-publishing."
+        }
+      },
+      {
+        "id": "operation-PoSpJ",
+        "functionId": "Serdes.deserialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "linecrossing"
+        }
+      },
+      {
+        "id": "operation-nzZwi",
+        "functionId": "fn:extract_count:latest",
+        "arguments": {}
+      },
+      {
+        "id": "operation-Sb25y",
+        "functionId": "Serdes.serialize",
+        "arguments": {
+          "schemaVersion": "latest",
+          "schemaId": "linecrosswithnumber"
+        }
+      }
+    ]
+  },
+  "onFailure": {
+    "pipeline": [
+      {
+        "id": "operation-MqRqX",
+        "functionId": "System.log",
+        "arguments": {
+          "level": "WARN",
+          "message": "Linecross topic recieved but schema is INvalid"
+        }
+      }
+    ]
+  }
+}
+
