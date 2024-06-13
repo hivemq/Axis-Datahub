@@ -1,6 +1,6 @@
 # Axis-Datahub
 
-To install the needed resources for the Axis demo Datahub processing step we need to upload two schema definitiopns (one for the input JSON and for for fromatting the output JSON. Therefore execute the following commands on the HiveMQ broker.
+To install the needed resources for the Axis demo Datahub processing step we need to upload two schema definitiopns (one for the input JSON and for for formatting the output JSON) along with a script and a policy. Therefore execute the following commands on the HiveMQ broker to upload all definintions to the HiveMQ datahub.
 
 ```
 mqtt hivemq schema create --id linecrossing --type json --file linecrossing.json
